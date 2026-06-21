@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aneesh Chatterjee</title>
+
+<!--
+  ============================================================
+  EDIT THESE FIVE THINGS, then you never have to touch it again:
+   1. The thesis line under your name (search: EDIT-THESIS)
+   2. The focus/location line (search: EDIT-FOCUS)
+   3. Your LinkedIn URL          (search: EDIT-LINKEDIN)
+   4. Your email                 (search: EDIT-EMAIL)
+   5. Drop the two PDFs into the repo root and confirm the
+      filenames match (search: EDIT-PDF). For the IASC paper,
+      strip the cover page first (the one with your address).
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --paper:    #0E1116;   /* dark ink-navy background */
+    --ink:      #E7EAEE;   /* light text */
+    --ink-soft: #99A2AD;   /* muted light text */
+    --grid:     #191E26;   /* faint grid lines on dark */
+    --rule:     #29303A;   /* dividers */
+    --accent:   #5B9BD5;   /* the GARCH-chart blue, lifted for a dark bg */
+    --accent-d: #86BCEC;   /* brighter, for hover states */
+    --maxw: 760px;
+    --display: "Space Grotesk", system-ui, sans-serif;
+    --body: "Newsreader", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    /* faint plotting-paper grid */
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: clamp(56px, 9vw, 120px) clamp(22px, 5vw, 40px) 80px;
+  }
+
+  /* ---- monospace utility label, used like an axis tick ---- */
+  .tick {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .tick::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 10px;
+    transform: translateY(-2px);
+  }
+
+  /* ---- hero ---- */
+  .hero { margin-bottom: clamp(64px, 10vw, 110px); }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(44px, 9vw, 82px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 22px 0 0;
+  }
+
+  .thesis {
+    font-size: clamp(20px, 3.2vw, 26px);
+    line-height: 1.42;
+    max-width: 30ch;
+    margin: 24px 0 0;
+    color: var(--ink);
+  }
+
+  .focus {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 26px;
+    line-height: 1.9;
+  }
+
+  /* ---- work section ---- */
+  .work-label { margin-bottom: 14px; }
+
+  .project {
+    padding: 34px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .project:last-of-type { border-bottom: 1px solid var(--rule); }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .kind {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(24px, 4vw, 32px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  h2 .name { color: var(--ink); }
+
+  .blurb {
+    margin: 14px 0 18px;
+    color: var(--ink);
+    max-width: 62ch;
+  }
+  .blurb em { color: var(--ink-soft); font-style: italic; }
+
+  /* ---- bulleted description (thin accent dash marker) ---- */
+  ul.blurb {
+    margin: 14px 0 18px;
+    padding: 0;
+    list-style: none;
+    max-width: 62ch;
+  }
+  ul.blurb li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 9px;
+    color: var(--ink);
+  }
+  ul.blurb li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 9px;
+    height: 1px;
+    background: var(--accent);
+  }
+  ul.blurb li:last-child { margin-bottom: 0; }
+
+  /* ---- results sub-section ---- */
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 22px 0 10px;
+  }
+  ul.results {
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+    max-width: 62ch;
+  }
+  ul.results li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 8px;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  ul.results li::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 0.5em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  ul.results li:last-child { margin-bottom: 0; }
+
+  .tags {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+  }
+
+  .go {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--accent);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .go .arrow { transition: transform 0.15s ease; display: inline-block; }
+  .go:hover, .go:focus-visible {
+    color: var(--accent-d);
+    border-color: var(--accent-d);
+  }
+  .go:hover .arrow, .go:focus-visible .arrow { transform: translateX(4px); }
+
+  /* ---- footer ---- */
+  footer {
+    margin-top: 64px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  footer a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  footer a:hover, footer a:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ---- focus visibility for keyboard users ---- */
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* ---- gentle load-in, disabled if the user prefers reduced motion ---- */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(10px); animation: rise 0.6s ease forwards; }
+    .hero .reveal { animation-delay: 0.05s; }
+    .project:nth-of-type(1) { animation-delay: 0.12s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <p class="tick reveal">Quantitative finance &middot; Applied mathematics</p>
+    <h1 class="reveal">Aneesh<br />Chatterjee</h1>
+
+    <!-- EDIT-THESIS: one or two lines, in your own voice -->
+    <p class="thesis reveal">
+      Building tested, honest quantitative-finance software, including volatility
+      models, risk analytics, and the numerical methods underneath them.
+    </p>
+
+    <!-- EDIT-FOCUS: whatever framing you want; keep it short -->
+    <p class="focus reveal">
+      MS Applied Mathematics, Columbia University: stochastic calculus, PDEs, numerical methods, machine learning, probability theory<br />
+      Open to: Quant research &amp; risk, Quant trading, Data science &amp; analytics 
+    </p>
+  </header>
+
+  <!-- ============ WORK ============ -->
+  <section>
+    <p class="tick work-label">Selected work</p>
+
+    <!-- Project 1 -->
+    <article class="project">
+      <div class="project-head">
+        <h2><span class="name">garch-risk-analytics</span></h2>
+        <span class="kind">Repository</span>
+      </div>
+      <ul class="blurb">
+        <li>A tested, installable Python package combining the following systems:</li>
+        <li>Rolling GJR-GARCH volatility forecasts feeding Monte-Carlo VaR and Expected Shortfall with Kupiec and Christoffersen backtests</li>
+        <li>Option Greeks, and a full price/volatility stress framework</li>
+        <li>Built to be honest about where the models break and be able to assess them robustly</li>
+      </ul>
+      <p class="block-label">Results</p>
+      <ul class="results">
+        <li>GARCH-fitted degrees of freedom cleanly separate near-Gaussian equities from genuinely fat-tailed Bitcoin</li>
+        <li>Bitcoin VaR passes Kupiec coverage at both 95% and 99%, with breach independence holding across all assets</li>
+        <li>GARCH volatility beats a naive rolling-window forecast on QLIKE for every asset</li>
+      </ul>
+      <p class="tags">Python &middot; GJR-GARCH &middot; VaR / ES &middot; Greeks &middot; stress testing &middot; 71 tests</p>
+      <a class="go" href="https://github.com/Aneesh2409/garch-risk-analytics">
+        View repository <span class="arrow">&rarr;</span>
+      </a>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project">
+      <div class="project-head">
+        <h2><span class="name">Monte Carlo &amp; ML Methods for VaR &amp; ES</span></h2>
+        <span class="kind">Paper</span>
+      </div>
+      <ul class="blurb">
+        <li>A comparison of traditional and machine-learning approaches to tail-risk estimation across equities and Bitcoin</li>
+        <li>Parametric GBM and historical bootstrap set against GAN and deep-quantile-regression scenario generators</li>
+        <li>Validated with unconditional- and conditional-coverage backtests</li>
+        <li><em>Co-authored.</em></li>
+      </ul>
+      <p class="block-label">Results</p>
+      <ul class="results">
+        <li>Traditional Monte-Carlo methods were strongest on Bitcoin and weakest on NASDAQ, where fatter tails and volatility clustering break their assumptions</li>
+        <li>GBM and bootstrap both pass Kupiec coverage on Bitcoin but fail Christoffersen on the equity indices, exposing volatility underestimation in stress</li>
+        <li>The GAN and DQR models proved far too conservative, with breach rates of 24 to 40% against a 5% target</li>
+      </ul>
+      <p class="tags">Monte Carlo &middot; historical bootstrap &middot; GAN &middot; Deep Quantile Regression &middot; Kupiec / Christoffersen &middot; co-authored</p>
+      <!-- EDIT-PDF: drop this file in the repo root; rename here if you prefer -->
+      <a class="go" href="monte-carlo-var-es.pdf">
+        Read paper (PDF) <span class="arrow">&rarr;</span>
+      </a>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project">
+      <div class="project-head">
+        <h2><span class="name">Mathematical Model of a Pregnancy Test</span></h2>
+        <span class="kind">Paper</span>
+      </div>
+      <ul class="blurb">
+        <li>An Indian Academy of Sciences summer research fellowship</li>
+        <li>A diffusion PDE with a nonlinear reaction boundary condition</li>
+        <li>Reduced via Laplace transform and convolution to a nonlinear Volterra integro-differential equation</li>
+        <li>Solved numerically with a product-integration and fixed-point iteration scheme in MATLAB</li>
+      </ul>
+      <p class="block-label">Results</p>
+      <ul class="results">
+        <li>In a diffusion-limited, antigen-favoured regime the product concentration stabilises near 0.7 and the surface antigen near 0.6</li>
+        <li>Raising the molar ratio so the antibody dominates drives both concentrations lower, matching the expected limiting-reactant behaviour</li>
+      </ul>
+      <p class="tags">PDEs &middot; Laplace transform &middot; Volterra equation &middot; numerical methods &middot; MATLAB</p>
+      <!-- EDIT-PDF: strip the cover page (address!) before adding this file -->
+      <a class="go" href="pregnancy-test-model.pdf">
+        Read paper (PDF) <span class="arrow">&rarr;</span>
+      </a>
+    </article>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <a href="https://github.com/Aneesh2409">GitHub</a>
+    <!-- EDIT-LINKEDIN -->
+    <a href="https://www.linkedin.com/in/aneesh-chatterjee-82539b2b7/">LinkedIn</a>
+    <!-- EDIT-EMAIL -->
+    <a href="mailto:aneesh2409@gmail.com">Email</a>
+  </footer>
+
+</div>
+</body>
+</html>
